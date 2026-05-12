@@ -2,69 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Blockchain Cloud File Sharing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cloud File Sharing System</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="bg-web"></div>
 
   <header>
-    <h1>Blockchain Cloud File Sharing</h1>
-    <p>Secure decentralized file storage using IPFS and Blockchain</p>
+    <h1>🕷️ Cloud File Sharing System</h1>
+    <p>Secure Login • Register • Upload Files</p>
   </header>
 
   <main class="container">
-
     <section class="card">
-      <h2>User Authentication</h2>
-
-      <input type="email" id="email" placeholder="Enter email" />
-      <input type="password" id="password" placeholder="Enter password" />
-
-      <div class="button-group">
-        <button onclick="register()">Register</button>
-        <button onclick="login()">Login</button>
-        <button onclick="logout()">Logout</button>
-      </div>
+      <h2>Register</h2>
+      <input type="text" id="regName" placeholder="Enter Name" />
+      <input type="email" id="regEmail" placeholder="Enter Email" />
+      <input type="password" id="regPassword" placeholder="Enter Password" />
+      <button onclick="registerUser()">Register</button>
     </section>
 
     <section class="card">
+      <h2>Login</h2>
+      <input type="email" id="loginEmail" placeholder="Enter Email" />
+      <input type="password" id="loginPassword" placeholder="Enter Password" />
+      <button onclick="loginUser()">Login</button>
+    </section>
+
+    <section class="card upload-card">
       <h2>Upload File</h2>
-
       <input type="file" id="fileInput" />
-
-      <button onclick="uploadFile()">Upload to IPFS</button>
-
-      <div id="result"></div>
+      <button onclick="uploadFile()">Upload File</button>
     </section>
-
-    <section class="card">
-      <h2>Uploaded Files</h2>
-
-      <table>
-        <thead>
-          <tr>
-            <th>File Name</th>
-            <th>CID</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-
-        <tbody id="fileTable">
-          <tr>
-            <td colspan="3">No files uploaded yet</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
   </main>
 
+  <div id="message"></div>
+
   <footer>
-    <p>Made by bct group</p>
+    <p>Made with ❤️ by Team Cloud File Sharing</p>
   </footer>
 
-  <script type="module" src="script.js"></script>
-
+  <script src="style.js"></script>
 </body>
 </html>
