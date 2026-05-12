@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blockchain Cloud File Sharing</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Blockchain Cloud File Sharing</h1>
+    <p>Secure file upload, IPFS storage and blockchain verification</p>
+  </header>
+
+  <main class="container">
+
+    <section class="card">
+      <h2>Upload File</h2>
+
+      <input type="file" id="fileInput" />
+
+      <button onclick="uploadFile()">Upload to IPFS</button>
+
+      <div id="result"></div>
+    </section>
+
+    <section class="card">
+      <h2>My Files</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>File Name</th>
+            <th>IPFS CID</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="fileTable">
+          <tr>
+            <td colspan="3">No files uploaded yet</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Made by Chaitanya Palve | Blockchain Project</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
