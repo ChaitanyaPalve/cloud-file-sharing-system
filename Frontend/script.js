@@ -71,7 +71,11 @@ window.uploadFile = async function () {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.detail || "Upload failed");
+      throw new Error(
+        typeof data.detail === "string"
+          ? data.detail
+          : JSON.stringify(data.detail)
+      );
     }
 
     await saveFileRecord({
@@ -97,4 +101,3 @@ window.uploadFile = async function () {
   } catch (error) {
     result.innerHTML = error.message;
   }
-};
