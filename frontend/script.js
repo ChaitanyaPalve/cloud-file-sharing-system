@@ -1,103 +1,98 @@
-import {
-  registerUser,
-  loginUser,
-  logoutUser,
-  saveFileRecord,
-  auth
-} from "./firebase.js";
+const API_URL = "https://cloud-file-sharing-system-1.onrender.com";
 
-const BACKEND_URL = "https://cloud-file-sharing-system-1.onrender.com/upload";
+function showMessage(text, type) {
+  const msg = document.getElementById("message");
+  msg.textContent = text;
+  msg.className = type;
+}
 
-window.register = async function () {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+async function registerUser() {
+  const name = document.getElementById("regName").value.trim();
+  const email = document.getElementById("regEmail").value.trim();
+  const password = document.getElementById("regPassword").value.trim();
+
+  if (!name || !email || !password) {
+    showMessage("Please fill all register fields.", "error");
+    return;
+  }
 
   try {
-    await registerUser(email, password);
-    alert("Registered Successfully");
-  } catch (error) {
-    alert(error.message);
-  }
-};
+    const res = await fetch(`${API_URL}/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ name, email, password })
+    });
 
-window.login = async function () {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+    const data = await res.json();
+
+    if (res.ok) {
+      showMessage(data.message || "Registration successful!", "success");
+    } else {
+      showMessage(data.detail || "Registration failed.", "error");
+    }
+  } catch (err) {
+    showMessage("Backend connection failed. Check Render backend URL.", "error");
+  }
+}
+
+async function loginUser() {
+  const email = document.getElementById("loginEmail").value.trim();
+  const password = document.getElementById("loginPassword").value.trim();
+
+  if (!email || !password) {
+    showMessage("Please fill login email and password.", "error");
+    return;
+  }
 
   try {
-    await loginUser(email, password);
-    alert("Login Successful");
-  } catch (error) {
-    alert(error.message);
-  }
-};
+    const res = await fetch(`${API_URL}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email, password })
+    });
 
-window.logout = async function () {
-  try {
-    await logoutUser();
-    alert("Logged Out");
-  } catch (error) {
-    alert(error.message);
-  }
-};
+    const data = await res.json();
 
-window.uploadFile = async function () {
+    if (res.ok) {
+      showMessage(data.message || "Login successful!", "success");
+    } else {
+      showMessage(data.detail || "Login failed.", "error");
+    }
+  } catch (err) {
+    showMessage("Backend connection failed. Check Render backend URL.", "error");
+  }
+}
+
+async function uploadFile() {
   const fileInput = document.getElementById("fileInput");
-  const result = document.getElementById("result");
-  const fileTable = document.getElementById("fileTable");
-
-  if (!auth.currentUser) {
-    result.innerHTML = "Please login first.";
-    return;
-  }
-
-  if (!fileInput.files.length) {
-    result.innerHTML = "Please select a file.";
-    return;
-  }
-
   const file = fileInput.files[0];
-  result.innerHTML = "Uploading file...";
+
+  if (!file) {
+    showMessage("Please select a file first.", "error");
+    return;
+  }
 
   const formData = new FormData();
   formData.append("file", file);
 
   try {
-    const response = await fetch(BACKEND_URL, {
+    const res = await fetch(`${API_URL}/upload`, {
       method: "POST",
       body: formData
     });
 
-    const data = await response.json();
+    const data = await res.json();
 
-    if (!response.ok) {
-      throw new Error(
-        typeof data.detail === "string"
-          ? data.detail
-          : JSON.stringify(data.detail)
-      );
+    if (res.ok) {
+      showMessage(data.message || "File uploaded successfully!", "success");
+    } else {
+      showMessage(data.detail || "Upload failed.", "error");
     }
-
-    await saveFileRecord({
-      filename: file.name,
-      cid: data.cid,
-      ipfs_url: data.ipfs_url,
-      owner_email: auth.currentUser.email
-    });
-
-    result.innerHTML = `
-      File uploaded successfully!<br><br>
-      CID: ${data.cid}<br><br>
-      <a href="${data.ipfs_url}" target="_blank">Open IPFS File</a>
-    `;
-
-    fileTable.innerHTML += `
-      <tr>
-        <td>${file.name}</td>
-        <td>${data.cid}</td>
-        <td>Saved in Firebase + IPFS</td>
-      </tr>
-    `;
-  } catch (error) {
-    result.innerHTML = error.message;
+  } catch (err) {
+    showMessage("Upload failed. Check backend URL or upload route.", "error");
   }
+}
