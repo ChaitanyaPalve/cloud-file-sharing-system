@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blockchain Cloud File Sharing</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Blockchain Cloud File Sharing</h1>
+    <p>Secure decentralized file storage using IPFS and Blockchain</p>
+  </header>
+
+  <main class="container">
+
+    <section class="card">
+      <h2>User Authentication</h2>
+
+      <input type="email" id="email" placeholder="Enter email" />
+      <input type="password" id="password" placeholder="Enter password" />
+
+      <div class="button-group">
+        <button onclick="register()">Register</button>
+        <button onclick="login()">Login</button>
+        <button onclick="logout()">Logout</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Upload File</h2>
+
+      <input type="file" id="fileInput" />
+
+      <button onclick="uploadFile()">Upload to IPFS</button>
+
+      <div id="result"></div>
+    </section>
+
+    <section class="card">
+      <h2>Uploaded Files</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>File Name</th>
+            <th>CID</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody id="fileTable">
+          <tr>
+            <td colspan="3">No files uploaded yet</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Made by bct group</p>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+
+</body>
+</html>
