@@ -6,7 +6,7 @@ import {
   auth
 } from "./firebase.js";
 
-const BACKEND_URL = "https://cloud-file-sharing-system-1.onrender.com";
+const BACKEND_URL = "https://cloud-file-sharing-system-1.onrender.com/upload";
 
 window.register = async function () {
   const email = document.getElementById("email").value;
