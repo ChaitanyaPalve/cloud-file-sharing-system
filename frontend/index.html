@@ -3,49 +3,91 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SpiderChain File Sharing</title>
+  <title>Blockchain Cloud File Sharing</title>
+
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
   <div class="bg-web web-one"></div>
   <div class="bg-web web-two"></div>
 
   <header>
-    <div class="logo">🕷️</div>
-    <h1>SpiderChain File Sharing</h1>
-    <p>Secure cloud file sharing with Firebase, IPFS and Blockchain proof</p>
+    <div class="logo">🕸️</div>
+
+    <h1>Blockchain Cloud File Sharing</h1>
+
+    <p>
+      Secure cloud file sharing using Firebase, IPFS and Blockchain
+    </p>
   </header>
 
   <main class="container">
 
+    <!-- AUTH -->
     <section class="card">
+
       <h2>User Authentication</h2>
 
-      <input type="email" id="email" placeholder="Enter email" />
-      <input type="password" id="password" placeholder="Enter password" />
+      <input
+        type="email"
+        id="email"
+        placeholder="Enter email"
+      />
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Enter password"
+      />
 
       <div class="button-group">
-        <button onclick="register()">Register</button>
-        <button onclick="login()">Login</button>
-        <button onclick="logout()">Logout</button>
+
+        <button onclick="register()">
+          Register
+        </button>
+
+        <button onclick="login()">
+          Login
+        </button>
+
+        <button onclick="logout()">
+          Logout
+        </button>
+
       </div>
+
     </section>
 
+    <!-- UPLOAD -->
     <section class="card upload-card">
+
       <h2>Upload File</h2>
 
-      <input type="file" id="fileInput" />
+      <input
+        type="file"
+        id="fileInput"
+      />
 
-      <button class="upload-btn" onclick="uploadFile()">Upload to IPFS</button>
+      <button
+        class="upload-btn"
+        onclick="uploadFile()"
+      >
+        Upload to IPFS
+      </button>
 
       <div id="result"></div>
+
     </section>
 
+    <!-- FILE TABLE -->
     <section class="card">
+
       <h2>Uploaded Files</h2>
 
       <table>
+
         <thead>
           <tr>
             <th>File Name</th>
@@ -53,20 +95,30 @@
             <th>Status</th>
           </tr>
         </thead>
+
         <tbody id="fileTable">
+
           <tr>
-            <td colspan="3">No files uploaded yet</td>
+            <td colspan="3">
+              No files uploaded yet
+            </td>
           </tr>
+
         </tbody>
+
       </table>
+
     </section>
 
   </main>
 
   <footer>
-    <p>Made by Chaitanya Palve | Blockchain Cloud File Sharing System</p>
+    <p>
+      Made by Chaitanya Palve
+    </p>
   </footer>
 
   <script type="module" src="style.js"></script>
+
 </body>
 </html>
